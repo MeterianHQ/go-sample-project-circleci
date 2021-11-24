@@ -1,0 +1,16 @@
+version: 2.1
+
+jobs:
+  meterian-scan:
+    docker:
+    - image: meterian/cli:latest-go
+    working_directory: /workspace
+    steps:
+      - checkout
+      - run: /root/circleci_entrypoint.sh
+
+workflows:
+  version: 2
+  commit-workflow:
+    jobs:
+      - meterian-scan
