@@ -7,7 +7,13 @@ jobs:
     working_directory: /workspace
     steps:
       - checkout
-      - run: /root/circleci_entrypoint.sh
+      - add_ssh_keys:
+          fingerprints:
+            - "7c:5b:1b:19:95:80:02:cb:2e:b1:db:20:dc:55:59:9c"
+      - run: |
+            git config --global url.ssh://git@github.com/.insteadOf https://github.com/
+            export GOPRIVATE=$PRIVATE_REPOS_GLOB_PATTERNS
+            /root/circleci_entrypoint.sh --report-console:licensing
 
 workflows:
   version: 2
