@@ -15,6 +15,7 @@ jobs:
             export GOPRIVATE=$PRIVATE_REPOS_GLOB_PATTERNS
             /root/circleci_entrypoint.sh --report-console:licensing
 
+
 workflows:
   version: 2
   commit-workflow:
